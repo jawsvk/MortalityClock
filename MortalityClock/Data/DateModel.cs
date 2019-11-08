@@ -9,11 +9,14 @@ namespace MortalityClock.Data
     public class DateModel
     {
 
-        [Required]
         public DateTime BirthDate { get; set; }
 
-        [Required]
         public DateTime DeathDate{ get; set; }
 
+        public DateModel()
+        {
+            BirthDate = DateTime.Today.AddYears(-30);
+            DeathDate = DateTime.Today;
+        }
     }
 }

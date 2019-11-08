@@ -3,12 +3,12 @@
 <h3>Form</h3>
 <p>Let us know your birthday and when you think you will die and we will do the rest...</p>
 
-<EditForm Model="@data" OnValidSubmit="@HandleSubmit">
+<EditForm Model="@_data" OnValidSubmit="@HandleSubmit">
     <label>Birthday</label>
-    <input type="date" @bind="@data.BirthDate" />
+    <input type="date" @bind="@_data.BirthDate" />
 
     <label>Presumed Death Date</label>
-    <input type="date" @bind="@data.DeathDate" />
+    <input type="date" @bind="@_data.DeathDate" />
     <br />
     <button type ="submit">Start</button>
 </EditForm>
@@ -17,12 +17,15 @@
 
 @code {
 
-    private DateModel data = new DateModel(); 
+    private readonly DateModel _data = new DateModel(); 
 
 
     void HandleSubmit()
     {
-        Console.WriteLine("OnValidSubmit {0}, {1}",data.BirthDate, data.DeathDate);
+        Console.WriteLine("OnValidSubmit {0}, {1}",_data.BirthDate, _data.DeathDate);
+        var diff = _data.DeathDate.Subtract(_data.BirthDate);
+
+        Console.WriteLine("difference of "+ diff);
     }
 
 }
