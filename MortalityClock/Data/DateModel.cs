@@ -15,7 +15,7 @@ namespace MortalityClock.Data
 
         public DateModel()
         {
-            BirthDate = DateTime.Today.AddYears(-30);
+            BirthDate = DateTime.Today.AddYears(-21);
             DeathDate = DateTime.Today;
         }
     }

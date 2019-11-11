@@ -6,24 +6,26 @@
 <EditForm Model="@_data" OnValidSubmit="@HandleSubmit">
     <label>Birthday</label>
     <input type="date" @bind="@_data.BirthDate" />
-
-    <label>Presumed Death Date</label>
-    <input type="date" @bind="@_data.DeathDate" />
     <br />
-    <button type ="submit">Start</button>
+    <label>Presumed Life Expectancy</label>
+    <input type="number" @bind="years"/>
+    <br />
+    <button type="submit">Start</button>
 </EditForm>
 
 
 
 @code {
 
-    private readonly DateModel _data = new DateModel(); 
+    private readonly DateModel _data = new DateModel();
+    int years;
 
 
     void HandleSubmit()
     {
-        Console.WriteLine("OnValidSubmit {0}, {1}",_data.BirthDate, _data.DeathDate);
-        var diff = _data.DeathDate.Subtract(_data.BirthDate);
+        Console.WriteLine("OnValidSubmit birthday on {0}, until {1}yo",_data.BirthDate, years);
+
+        var diff = _data.BirthDate.AddYears(years).Subtract(DateTime.Now);
 
         Console.WriteLine("difference of "+ diff);
     }
