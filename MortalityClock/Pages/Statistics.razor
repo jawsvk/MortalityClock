@@ -1,8 +1,24 @@
-﻿<div hidden ="@shouldHide">
-<p>Statistics</p>
+﻿@inject AppState AppState
+@implements IDisposable
+
+@AppState.BirthDate
+@AppState.Years 
+@AppState.ShouldHide
+
+<div hidden="@AppState.ShouldHide">
+    <p>Statistics</p>
 </div>
 
 @code {
-    bool shouldHide = true;
+
+        protected override void OnInitialized()
+    {
+        AppState.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        AppState.OnChange += StateHasChanged;
+    }
+
 }
- 
