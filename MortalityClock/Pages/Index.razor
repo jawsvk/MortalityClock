@@ -1,6 +1,9 @@
 ﻿@page "/"
-
+@inject AppState state
 <h1>Mortality Clock</h1>
+<CascadingValue Value="state">
 <Form></Form>
 <br/>
-<Statistics></Statistics>
+
+</CascadingValue>
+<Statistics CurrentYears="state.Years"></Statistics>

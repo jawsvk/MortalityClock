@@ -1,5 +1,4 @@
 ﻿@using MortalityClock.Data
-@inject AppState AppState
 
 <p>Let us know your birthday and when you think you will die and we will do the rest...</p>
 
@@ -28,8 +27,6 @@
         var diff = _data.BirthDate.AddYears(years).Subtract(DateTime.Now);
 
         Console.WriteLine("difference of "+ diff);
-        AppState.SetState(_data.BirthDate, years);
-
     }
 
 }
