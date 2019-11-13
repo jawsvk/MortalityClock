@@ -1,7 +1,13 @@
 ﻿
-<div>
-    <p>Statistics</p>
-</div>
+    <div>
+        <p>Statistics</p>
+        <div>
+            <span>@StartDate</span>
+            <span>@years</span>
+        </div>
+    </div>
 
 @code {
+    [Parameter] public DateTime StartDate { get; set; }
+    [Parameter] public int years { get; set; }
 }

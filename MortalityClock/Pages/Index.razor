@@ -2,22 +2,19 @@
 @page "/"
 <h1>Mortality Clock</h1>
 
-<div color="grey">
-    <span>@StartDate</span>
-    <span>@years</span>
-</div>
 <Form OnSubmit="SubmitHandler"></Form>
 <br />
-<Statistics></Statistics>
+<Statistics StartDate="StartDate" years ="years"></Statistics>
 
 @code {
-    string StartDate = "before form submit";
-    string years = "before form submit";
+    DateTime StartDate;
+    int years;
+
 
     void SubmitHandler(DateModel data)
     {
-        StartDate = data.BirthDate.ToString();
-        years = data.Years.ToString();
+        StartDate = data.BirthDate;
+        years = data.Years;
 
     }
 }
