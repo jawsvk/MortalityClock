@@ -7,7 +7,7 @@
     <input type="date" @bind="@_data.BirthDate" />
     <br />
     <label>Presumed Life Expectancy</label>
-    <input type="number" @bind="years"/>
+    <input type="number" @bind="_data.Years"/>
     <br />
     <button type="submit">Start</button>
 </EditForm>
@@ -17,16 +17,19 @@
 @code {
 
     private readonly DateModel _data = new DateModel();
-    int years;
+    [Parameter] public EventCallback<DateModel> OnSubmit { get; set; }
+    
 
 
     void HandleSubmit()
     {
-        Console.WriteLine("OnValidSubmit birthday on {0}, until {1}yo",_data.BirthDate, years);
+        Console.WriteLine("OnValidSubmit birthday on {0}, until {1}yo",_data.BirthDate, _data.Years);
 
-        var diff = _data.BirthDate.AddYears(years).Subtract(DateTime.Now);
+        var diff = _data.BirthDate.AddYears(_data.Years).Subtract(DateTime.Now);
 
         Console.WriteLine("difference of "+ diff);
+
+        OnSubmit.InvokeAsync(_data);
     }
 
 }

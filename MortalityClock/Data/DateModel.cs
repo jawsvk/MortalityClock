@@ -13,6 +13,8 @@ namespace MortalityClock.Data
 
         public DateTime DeathDate{ get; set; }
 
+        public int Years { get; set; }
+
         public DateModel()
         {
             BirthDate = DateTime.Today.AddYears(-21);

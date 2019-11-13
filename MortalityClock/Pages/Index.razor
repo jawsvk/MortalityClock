@@ -1,9 +1,23 @@
-﻿@page "/"
-@inject AppState state
+﻿@using MortalityClock.Data
+@page "/"
 <h1>Mortality Clock</h1>
-<CascadingValue Value="state">
-<Form></Form>
-<br/>
 
-</CascadingValue>
-<Statistics CurrentYears="state.Years"></Statistics>
+<div color="grey">
+    <span>@StartDate</span>
+    <span>@years</span>
+</div>
+<Form OnSubmit="SubmitHandler"></Form>
+<br />
+<Statistics></Statistics>
+
+@code {
+    string StartDate = "before form submit";
+    string years = "before form submit";
+
+    void SubmitHandler(DateModel data)
+    {
+        StartDate = data.BirthDate.ToString();
+        years = data.Years.ToString();
+
+    }
+}
